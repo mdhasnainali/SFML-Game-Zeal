@@ -1,9 +1,5 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
-#include "png_Loader.h"
-#include "Menu.h"
-#include "Keyboard.h"
-#include "Variables.h"
 using namespace std;
 using namespace sf;
  

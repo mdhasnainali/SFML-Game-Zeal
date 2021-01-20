@@ -147,12 +147,6 @@
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Keyboard.h" />
-    <ClInclude Include="Menu.h" />
-    <ClInclude Include="png_Loader.h" />
-    <ClInclude Include="Variables.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
