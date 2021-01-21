@@ -1,19 +1,14 @@
 #include "stdafx.h"
 #include "Game.h"
+#include <Windows.h>
 
 int main()
 {
 	//Init game engine
 	Game game;
 
-	while (game.running())
-	{
-
-		game.update();
-		game.render();
-	}
-	cout << "100" << endl;
+	//Game Loop
+	game.run();
 
 	return 0;
-
 }
