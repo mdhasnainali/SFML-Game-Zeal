@@ -25,9 +25,22 @@ void Game::initializeWindow()
 		ifs >> vertical_sync_enabled;
 	}
 
-	this->window = new RenderWindow(videoMode, title/*, Style:: Fullscreen*/);
+	ifs.close();
+
+	this->window = new RenderWindow(videoMode, title, Style:: Fullscreen);
 	this->window->setFramerateLimit(window_frame_limit);
 	this->window->setVerticalSyncEnabled(vertical_sync_enabled);
+}
+
+
+void Game::initMenu()
+{
+	this->menu = new Menu;
+}
+
+void Game::initializedPlayer()
+{
+	this->player = new Player;
 }
 
 
@@ -38,6 +51,8 @@ Game::Game()
 {
 	this->initializeVariables();
 	this->initializeWindow();
+	this->initializedPlayer();
+	this->initMenu();
 }
 
 Game::~Game()
@@ -100,6 +115,8 @@ void Game::update()
 
 	this->updatePollEvents();
 	this->updateDt();
+	this->menu->update();
+
 }
 
 void Game::render()
@@ -116,7 +133,8 @@ void Game::render()
 	this->window->clear();
 
 	//Draw or render game objects
-
+	//this->player->render(*this-> window);
+	this->menu->render(*this-> window);
 
 	//display frame in window
 	this->window->display();

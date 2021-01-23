@@ -1,5 +1,6 @@
 #pragma once
-#include "State.h"
+#include "Player.h"
+#include "Menu.h"
 
 /*
 	Class that act as a game engine.
@@ -16,6 +17,10 @@ private:
 	VideoMode videoMode;
 	Event ev;
 
+	//Self Making Class:
+	Player* player;
+	Menu* menu;
+	 
 	//Clock Time
 	Clock dtClock;
 	float dt;
@@ -24,6 +29,10 @@ private:
 	//Initializer
 	void initializeVariables();
 	void initializeWindow();
+
+	//Self Making Class Functions:
+	void initMenu();
+	void initializedPlayer();
 
 public:
 	//Constructors & Destructors
