@@ -1,6 +1,7 @@
 #pragma once
 #include "Player.h"
 #include "Menu.h"
+#include "playing.h"
 
 /*
 	Class that act as a game engine.
@@ -20,6 +21,12 @@ private:
 	//Self Making Class:
 	Player* player;
 	Menu* menu;
+	playing* Playing;
+
+	//Audio
+	Music menuMusic, playMusic;
+	SoundBuffer buttonSoundBuffer, fireBuffer, bossSoundBuffer;
+	Sound buttonSound, fireSound, bossSound;
 	 
 	//Clock Time
 	Clock dtClock;
@@ -29,10 +36,12 @@ private:
 	//Initializer
 	void initializeVariables();
 	void initializeWindow();
+	void initializedMusic();
 
 	//Self Making Class Functions:
 	void initMenu();
 	void initializedPlayer();
+	void initializePlaying();
 
 public:
 	//Constructors & Destructors
@@ -50,6 +59,9 @@ public:
 
 	//Update Related Functions
 	void updateDt();
+
+	//Audio:
+	void updateMusic();
 
 	//Inside Game Loop Components
 	void update();

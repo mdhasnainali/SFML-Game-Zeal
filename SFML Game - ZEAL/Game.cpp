@@ -16,7 +16,7 @@ void Game::initializeWindow()
 	unsigned window_frame_limit = 120;
 	bool vertical_sync_enabled = false;
 
-	ifstream ifs("Config/window.ini");
+	/*ifstream ifs("Config/window.ini");
 	if (ifs.is_open())
 	{
 		getline(ifs, title);
@@ -25,11 +25,22 @@ void Game::initializeWindow()
 		ifs >> vertical_sync_enabled;
 	}
 
-	ifs.close();
+	ifs.close();*/
 
-	this->window = new RenderWindow(videoMode, title, Style:: Fullscreen);
+	this->window = new RenderWindow(VideoMode(1366,768), title, Style:: Fullscreen);
 	this->window->setFramerateLimit(window_frame_limit);
 	this->window->setVerticalSyncEnabled(vertical_sync_enabled);
+}
+
+void Game::initializedMusic()
+{
+	if (!this->menuMusic.openFromFile("Resources/Audio/Menu.ogg")) cout << "Problem::Menu Sound" << endl;
+	this->menuMusic.play();
+	this->menuMusic.setLoop(true);
+	if (!this->playMusic.openFromFile("Resources/Audio/Game_Play.wav")) cout << "Problem::Game Sound" << endl;
+	this->playMusic.play();
+	this->playMusic.setLoop(true);
+
 }
 
 
@@ -43,6 +54,11 @@ void Game::initializedPlayer()
 	this->player = new Player;
 }
 
+void Game::initializePlaying()
+{
+	this->Playing = new playing;
+}
+
 
 //Public Functions
 
@@ -53,6 +69,8 @@ Game::Game()
 	this->initializeWindow();
 	this->initializedPlayer();
 	this->initMenu();
+	this->initializedMusic();
+	this->initializePlaying();
 }
 
 Game::~Game()
@@ -65,7 +83,8 @@ Game::~Game()
 
 const bool Game::running() const
 {
-	return this->window->isOpen();
+	if (menu_status == QUITS) return false;
+	else return this->window->isOpen();
 }
 
 const bool Game::getGameEnd() const
@@ -98,8 +117,21 @@ void Game::updateDt()
 	
 	this->dt = this->dtClock.restart().asSeconds();
 
-	system("cls");
-	cout << dt << endl;
+	deltatime = dt;
+}
+
+void Game::updateMusic()
+{
+	if (game_status == PLAYING)
+	{
+		this->playMusic.setVolume(100);
+		this->menuMusic.setVolume(0);
+	}
+	else
+	{
+		this->playMusic.setVolume(0);
+		this->menuMusic.setVolume(100);
+	}
 }
 
 
@@ -112,11 +144,17 @@ void Game::update()
 		Update the game objects:
 		Work with contineous change
 	*/
+	//if (game_status == PLAYING)
+	//{
+		//this->window->setMouseCursorVisible(false);
+		//this->playingGame->Update();
+	//}
+	//else this->window->setMouseCursorVisible(true);
 
 	this->updatePollEvents();
 	this->updateDt();
 	this->menu->update();
-
+	this->updateMusic();
 }
 
 void Game::render()
@@ -133,8 +171,15 @@ void Game::render()
 	this->window->clear();
 
 	//Draw or render game objects
-	//this->player->render(*this-> window);
+	
 	this->menu->render(*this-> window);
+
+	if (game_status == PLAYING)
+	{
+		//this->player->render(*this->window);
+		//this->playingGame->Render(*this->window);
+		this->Playing->all_Render(*this->window);
+	}
 
 	//display frame in window
 	this->window->display();
