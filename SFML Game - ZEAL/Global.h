@@ -7,7 +7,7 @@ extern float deltatime;
 
 //Game Parameter
 extern int game_status, menu_status;
-extern bool locked;
+extern bool locked, mouseclickglobal;
 
 //Game Status
 extern const int PLAYING, MENU, PAUSED, RESUME_GAME, MENU_EXTENSION, MENU_PAUSED_EXTENSION, ANIMATION;

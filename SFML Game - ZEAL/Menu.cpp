@@ -36,7 +36,7 @@ void Menu::initTexture()
 	this->menuOption[4].loadFromFile("Resources/Options/Stats.png");
 	this->menuOption[5].loadFromFile("Resources/Options/Story.png");
 
-	this->blank.loadFromFile("Resources/Menu/abc.jpg");
+	this->blank.loadFromFile("Resources/Menu/Blank.png");
 }
 
 void Menu::initSprite()
@@ -47,45 +47,45 @@ void Menu::initSprite()
 
 void Menu::initShape()
 {
-	this->buttons[0].setPosition(375.f, 162.f);
-	this->buttons[0].setSize(Vector2f(122.f, 42.f));
-	this->buttons[1].setPosition(164.f, 225.f);
-	this->buttons[1].setSize(Vector2f(327.f, 42.f));
-	this->buttons[2].setPosition(303.f, 287.f);
-	this->buttons[2].setSize(Vector2f(190.f, 42.f));
-	this->buttons[3].setPosition(372.f, 347.f);
-	this->buttons[3].setSize(Vector2f(122.f, 42.f));
-	this->buttons[4].setPosition(320.f, 410.f);
-	this->buttons[4].setSize(Vector2f(175.f, 42.f));
-	this->buttons[5].setPosition(390.f, 470.f);
-	this->buttons[5].setSize(Vector2f(106.f, 42.f));
+	this->buttons[0].setPosition(530.f, 231.f);
+	this->buttons[0].setSize(Vector2f(163.f, 52.f));
+	this->buttons[1].setPosition(233.f, 315.f);
+	this->buttons[1].setSize(Vector2f(462.f, 57.f));
+	this->buttons[2].setPosition(426.f, 403.f);
+	this->buttons[2].setSize(Vector2f(268.f, 53.f));
+	this->buttons[3].setPosition(529.f, 490.f);
+	this->buttons[3].setSize(Vector2f(162.f, 52.f));
+	this->buttons[4].setPosition(451.f, 574.f);
+	this->buttons[4].setSize(Vector2f(242.f, 57.f));
+	this->buttons[5].setPosition(545.f, 662.f);
+	this->buttons[5].setSize(Vector2f(151.f, 61.f));
 
 
-	this->buttonsforMission[0].setPosition(548,215);
-	this->buttonsforMission[0].setSize(Vector2f(279,30));
-	this->buttonsforMission[1].setPosition(601, 262);
-	this->buttonsforMission[1].setSize(Vector2f(177, 30));
-	this->buttonsforMission[2].setPosition(586, 307);
-	this->buttonsforMission[2].setSize(Vector2f(204, 30));
-	this->buttonsforMission[3].setPosition(488, 353);
-	this->buttonsforMission[3].setSize(Vector2f(400, 30));
-	this->buttonsforMission[4].setPosition(545, 403);
-	this->buttonsforMission[4].setSize(Vector2f(287, 30));
-	this->buttonsforMission[5].setPosition(583, 450);
-	this->buttonsforMission[5].setSize(Vector2f(212, 30));
-	this->buttonsforMission[6].setPosition(598, 497);
-	this->buttonsforMission[6].setSize(Vector2f(172, 30));
-	this->buttonsforMission[7].setPosition(455, 542);
-	this->buttonsforMission[7].setSize(Vector2f(466, 30));
+	this->buttonsforMission[0].setPosition(772,304);
+	this->buttonsforMission[0].setSize(Vector2f(395,38));
+	this->buttonsforMission[1].setPosition(846, 370);
+	this->buttonsforMission[1].setSize(Vector2f(255, 37));
+	this->buttonsforMission[2].setPosition(826, 434);
+	this->buttonsforMission[2].setSize(Vector2f(284, 39));
+	this->buttonsforMission[3].setPosition(687, 502);
+	this->buttonsforMission[3].setSize(Vector2f(564, 40));
+	this->buttonsforMission[4].setPosition(768, 569);
+	this->buttonsforMission[4].setSize(Vector2f(401, 38));
+	this->buttonsforMission[5].setPosition(820, 634);
+	this->buttonsforMission[5].setSize(Vector2f(296, 41));
+	this->buttonsforMission[6].setPosition(844, 701);
+	this->buttonsforMission[6].setSize(Vector2f(238, 38));
+	this->buttonsforMission[7].setPosition(640, 764);
+	this->buttonsforMission[7].setSize(Vector2f(656, 43));
 
-	this->buttonsforOptions[0].setPosition(372, 208);;
-	this->buttonsforOptions[0].setSize(Vector2f(122, 40));
-	this->buttonsforOptions[1].setPosition(329, 272);;
-	this->buttonsforOptions[1].setSize(Vector2f(162, 40));
-	this->buttonsforOptions[2].setPosition(389, 332);;
-	this->buttonsforOptions[2].setSize(Vector2f(102, 40));
-	this->buttonsforOptions[3].setPosition(725, 300);;
-	this->buttonsforOptions[3].setSize(Vector2f(430, 141));;
+	this->buttonsforOptions[0].setPosition(519, 293);;
+	this->buttonsforOptions[0].setSize(Vector2f(180, 54));
+	this->buttonsforOptions[1].setPosition(463, 380);;
+	this->buttonsforOptions[1].setSize(Vector2f(233, 61));
+	this->buttonsforOptions[2].setPosition(544, 470);
+	this->buttonsforOptions[2].setSize(Vector2f(155, 60));
+	this->buttonsforOptions[3].setPosition(1044, 478);;
+	this->buttonsforOptions[3].setSize(Vector2f(555, 82));;
 }
 
 void Menu::initAudio()
@@ -465,6 +465,7 @@ void Menu::afterMenu(int i)
 	this->playButtonSound();
 	if (i == 1)
 	{
+		menusprites.setTexture(blank);
 		game_status = PLAYING;
 	}
 	else if (i == 2)
@@ -497,6 +498,7 @@ void Menu::afterMenu(int i)
 	}
 	else if (i == 8)
 	{
+		menusprites.setTexture(blank);
 		game_status = PLAYING;
 	}
 	else if (i == 9)

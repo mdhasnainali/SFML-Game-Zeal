@@ -27,7 +27,7 @@ void Game::initializeWindow()
 
 	ifs.close();*/
 
-	this->window = new RenderWindow(VideoMode(1366,768), title, Style:: Fullscreen);
+	this->window = new RenderWindow(VideoMode(1920,1080), title, Style:: Fullscreen);
 	this->window->setFramerateLimit(window_frame_limit);
 	this->window->setVerticalSyncEnabled(vertical_sync_enabled);
 }
@@ -98,13 +98,19 @@ const bool Game::getGameEnd() const
 void Game::updatePollEvents()
 {
 	//Update Events
+	mouseclickglobal = false;
 	while (this->window->pollEvent(this->ev))
 	{
+		
 		switch (this->ev.type)
 		{
 		case Event::Closed:
 			window->close();
 			break;
+		}
+		if (ev.type == Event::MouseButtonPressed && ev.key.code == Mouse::Left)
+		{
+			mouseclickglobal = true;
 		}
 	}
 }

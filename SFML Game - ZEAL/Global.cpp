@@ -8,7 +8,8 @@ float deltatime;
 
 
 int game_status, menu_status;
-bool locked;
+bool locked, mouseclickglobal=false;
+
 
 //Game Status
 const int PLAYING=0, MENU=1, PAUSED=2, RESUME_GAME=3, MENU_EXTENSION =4, MENU_PAUSED_EXTENSION=5, ANIMATION = 6;

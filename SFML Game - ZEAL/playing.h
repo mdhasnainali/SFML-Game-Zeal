@@ -2,6 +2,11 @@
 class playing
 {
 private:
+
+    //Sound:
+    SoundBuffer shootsoundbuffer;
+    Sound shootSound;
+
     //Gameover initiation:
     bool gameover;
     Texture gameovertexture;
@@ -270,6 +275,9 @@ private:
     //Bullet
     vector< pair <double, double>>bullet;
     vector<bool>bulletface;
+
+    //Shoot
+    double shoot;
 
 
 

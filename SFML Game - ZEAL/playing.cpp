@@ -4,6 +4,12 @@
 
 void playing::initVariables()
 {
+    
+    //Sound:
+    shootsoundbuffer.loadFromFile("Resources/Audio/shoot.ogg");
+    shootSound.setBuffer(shootsoundbuffer);
+
+    
     //Gameover initiation:
 
     this->gameover = false;
@@ -673,7 +679,7 @@ void playing::initVariables()
     this->rockon = true;
 
     //Cave:
-    cavetexture.loadFromFile("cave.png");
+    cavetexture.loadFromFile("cave/cave.png");
     this->cavebody.setSize(Vector2f(600.0f, 600.0f));
     this->cave.first = 2000;
     this->cave.second = 450.0;
@@ -682,20 +688,20 @@ void playing::initVariables()
 
 
     //Infinity stone
-    infinitystonetexture.loadFromFile("infinitystone.png");
+    infinitystonetexture.loadFromFile("cave/infinitystone.png");
     this->infinitystonebody.setSize(Vector2f(620.0f, 540.0f));
     this->infinitystoneon = false;
 
 
 
     //Puzzle:
-    puzzletexture.loadFromFile("puzzle.png");
+    puzzletexture.loadFromFile("puzzle/puzzle.png");
     this->puzzlebody.setSize(Vector2f(1500.0f, 750.0f));
 
-    puzzleabctexture[0].loadFromFile("0.png");
-    puzzleabctexture[1].loadFromFile("1.png");
-    puzzleabctexture[2].loadFromFile("2.png");
-    puzzleabctexture[3].loadFromFile("3.png");
+    puzzleabctexture[0].loadFromFile("puzzle/0.png");
+    puzzleabctexture[1].loadFromFile("puzzle/1.png");
+    puzzleabctexture[2].loadFromFile("puzzle/2.png");
+    puzzleabctexture[3].loadFromFile("puzzle/3.png");
     this->puzzlesolved = false;
     this->puzzle.first = 0.0;
     this->puzzle.second = 150.0;
@@ -864,6 +870,7 @@ void playing::initVariables()
     this->sprite.setTexture(ex);
     this->sprite1.setTexture(ex1);
     this->background3sprite.setTexture(background3texture);
+    this->shoot = 0.0;
     
 }
 
@@ -879,6 +886,13 @@ playing::~playing()
 
 void playing::all_Render(RenderTarget& target)
 {
+    
+    //sound:
+    if (mouseclickglobal)
+    {
+        this->shootSound.play();
+    }
+    
     
     //Background:
 
@@ -910,7 +924,7 @@ void playing::all_Render(RenderTarget& target)
         faceright = true;
         stepcount += deltatime;
     }
-    if (Keyboard::isKeyPressed(Keyboard::W) || jump != 0)
+    if (Keyboard::isKeyPressed(Keyboard::Space) || jump != 0)
     {
         if (jump == 0) {
             jump = 1;
@@ -926,20 +940,22 @@ void playing::all_Render(RenderTarget& target)
         }
         pos = 4;
     }
-    if (Keyboard::isKeyPressed(Keyboard::Space))
+    if (mouseclickglobal)
     {
-        mouseclick = true;
+        
         if (faceright)
         {
             bullet.push_back(make_pair(800.0, y + 50));
             bulletface.push_back(true);
         }
-        else
+        else if(faceright==false)
         {
             bullet.push_back(make_pair(680.0, y + 50));
             bulletface.push_back(false);
         }
     }
+    if(mouseclick)cout<<"Clicked"<<endl;
+    
 
 
     if (pos == 2)
